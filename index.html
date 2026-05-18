@@ -13,167 +13,62 @@
   #hud { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; }
 
   /* Radar */
-  #radar {
-    position:absolute; bottom:160px; left:20px;
-    width:110px; height:110px;
-    background:rgba(0,0,0,0.7);
-    border:2px solid rgba(255,200,0,0.8);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  #radarCanvas { width:110px; height:110px; }
+  #radarCanvas { position:absolute; bottom:160px; left:20px; border:2px solid rgba(255,200,0,0.8); border-radius:6px; background:rgba(0,0,0,0.7); width:110px; height:110px; }
 
   /* Health */
-  #health-wrap {
-    position:absolute; bottom:135px; left:20px;
-    width:110px;
-  }
+  #health-wrap { position:absolute; bottom:135px; left:20px; width:110px; }
   #health-label { color:#fff; font-size:10px; letter-spacing:1px; margin-bottom:3px; text-shadow:1px 1px 2px #000; }
-  #health-bar {
-    height:8px; background:rgba(0,0,0,0.6);
-    border:1px solid rgba(255,200,0,0.6); border-radius:2px; overflow:hidden;
-  }
+  #health-bar { height:8px; background:rgba(0,0,0,0.6); border:1px solid rgba(255,200,0,0.6); border-radius:2px; overflow:hidden; }
   #health-fill { height:100%; width:100%; background:linear-gradient(90deg,#00ff88,#00cc66); transition:width .3s; }
 
   /* Speed */
-  #speedometer {
-    position:absolute; bottom:20px; right:20px;
-    color:#fff; text-align:right; text-shadow:0 0 8px #ff6600;
-  }
+  #speedometer { position:absolute; bottom:20px; right:20px; color:#fff; text-align:right; text-shadow:0 0 8px #ff6600; }
   #speed-val { font-size:36px; font-weight:900; line-height:1; }
   #speed-unit { font-size:12px; opacity:.7; letter-spacing:2px; }
 
-  /* Wanted */
-  #wanted {
-    position:absolute; top:12px; right:16px;
-    display:flex; gap:4px;
-  }
-  .star { font-size:18px; color:#555; transition:color .3s; }
+  /* Wanted Stars */
+  #wanted { position:absolute; top:12px; right:16px; display:flex; gap:4px; }
+  .star { font-size:18px; color:#555; }
   .star.on { color:#ffd700; text-shadow:0 0 6px #ffd700; }
 
   /* Phone overlay */
-  #phone-wrap {
-    position:absolute; bottom:0; right:20px;
-    transform:translateY(120%);
-    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-    pointer-events:auto;
-  }
+  #phone-wrap { position:absolute; bottom:0; right:20px; transform:translateY(120%); transition:transform .4s cubic-bezier(.34,1.56,.64,1); pointer-events:auto; }
   #phone-wrap.open { transform:translateY(-20px); }
-  #phone {
-    width:180px; background:linear-gradient(145deg,#1a1a2e,#16213e);
-    border-radius:22px; border:2px solid rgba(255,255,255,0.15);
-    padding:14px; box-shadow:0 20px 60px rgba(0,0,0,0.8),inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-  #phone-status {
-    display:flex; justify-content:space-between; align-items:center;
-    color:#fff; font-size:10px; margin-bottom:10px; opacity:.8;
-  }
+  #phone { width:180px; background:linear-gradient(145deg,#1a1a2e,#16213e); border-radius:22px; border:2px solid rgba(255,255,255,0.15); padding:14px; box-shadow:0 20px 60px rgba(0,0,0,0.8); }
+  #phone-status { display:flex; justify-content:space-between; color:#fff; font-size:10px; margin-bottom:10px; opacity:.8; }
   #phone-time { font-size:22px; font-weight:700; color:#fff; text-align:center; margin-bottom:14px; }
   #phone-apps { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .app-btn {
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
-    border-radius:14px; padding:10px 4px; text-align:center; cursor:pointer;
-    transition:all .2s; color:#fff;
-  }
-  .app-btn:active { transform:scale(.94); background:rgba(255,255,255,0.18); }
+  .app-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:10px 4px; text-align:center; cursor:pointer; color:#fff; }
   .app-icon { font-size:22px; display:block; margin-bottom:3px; }
   .app-name { font-size:9px; opacity:.7; }
 
-  /* Touch controls */
-  #touch-controls { position:absolute; bottom:0; left:0; width:100%; pointer-events:none; }
-
-  /* Joystick */
-  #joystick-zone {
-    position:absolute; bottom:20px; left:20px;
-    width:110px; height:110px;
-    pointer-events:auto;
-  }
-  #joystick-base {
-    position:absolute; inset:0;
-    border-radius:50%;
-    background:rgba(255,255,255,0.08);
-    border:2px solid rgba(255,255,255,0.25);
-    backdrop-filter:blur(4px);
-  }
-  #joystick-knob {
-    position:absolute;
-    width:40px; height:40px;
-    background:radial-gradient(circle at 40% 35%,rgba(255,255,255,0.6),rgba(255,200,0,0.5));
-    border-radius:50%;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    box-shadow:0 2px 12px rgba(0,0,0,0.5);
-    transition:none;
-  }
-
-  /* Action buttons */
-  #action-btns {
-    position:absolute; bottom:20px; right:20px;
-    display:flex; flex-direction:column; gap:10px; align-items:flex-end;
-    pointer-events:auto;
-  }
-  .action-btn {
-    width:60px; height:60px;
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,0.3);
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(6px);
-    color:#fff; font-size:11px; font-weight:700; letter-spacing:.5px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    cursor:pointer; user-select:none;
-    box-shadow:0 4px 16px rgba(0,0,0,0.5);
-    text-align:center; line-height:1.2;
-  }
-  #btn-action { background:rgba(0,180,80,0.3); border-color:rgba(0,255,120,0.5); }
-  #btn-brake  { background:rgba(200,30,30,0.3); border-color:rgba(255,60,60,0.5); }
-  #btn-phone  { background:rgba(30,100,200,0.3); border-color:rgba(60,150,255,0.5); }
-  .action-btn:active { transform:scale(.9); }
-
-  /* Notification */
-  #notif {
-    position:absolute; top:20px; left:50%; transform:translateX(-50%) translateY(-80px);
-    background:rgba(0,0,0,0.85); color:#ffd700;
-    padding:8px 20px; border-radius:20px; font-size:13px; font-weight:600;
-    border:1px solid rgba(255,215,0,0.4);
-    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-    white-space:nowrap; pointer-events:none;
-  }
-  #notif.show { transform:translateX(-50%) translateY(0); }
-
-  /* Loading screen */
-  #loading {
-    position:fixed; inset:0; background:#0a0a0a; z-index:100;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    transition:opacity .8s;
-  }
-  #loading-logo {
-    font-size:52px; font-weight:900; color:#ffd700;
-    text-shadow:0 0 30px rgba(255,215,0,0.5);
-    letter-spacing:-2px; margin-bottom:6px;
-  }
-  #loading-sub { color:#888; font-size:13px; letter-spacing:4px; margin-bottom:40px; }
-  #loading-bar-wrap {
-    width:260px; height:4px; background:#222; border-radius:2px; overflow:hidden;
-  }
-  #loading-bar { height:100%; width:0; background:#ffd700; transition:width .1s; }
-  #loading-tip { color:#555; font-size:11px; margin-top:16px; }
+  /* Controls */
+  #joystick-zone { position:absolute; bottom:20px; left:20px; width:110px; height:110px; pointer-events:auto; }
+  #joystick-base { position:absolute; inset:0; border-radius:50%; background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.25); }
+  #joystick-knob { position:absolute; width:40px; height:40px; background:radial-gradient(circle, #fff, #ffcc00); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+  #action-btns { position:absolute; bottom:20px; right:20px; display:flex; flex-direction:column; gap:10px; pointer-events:auto; }
+  .action-btn { width:60px; height:60px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); background:rgba(0,0,0,0.4); color:#fff; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; text-align:center; }
+  
+  /* Loading */
+  #loading { position:fixed; inset:0; background:#0a0a0a; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .8s; }
+  #loading-logo { font-size:42px; font-weight:900; color:#ffd700; }
+  #loading-bar-wrap { width:200px; height:4px; background:#222; margin-top:20px; }
+  #loading-bar { height:100%; width:0%; background:#ffd700; }
+  #notif { position:absolute; top:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:#ffd700; padding:8px 20px; border-radius:20px; display:none; }
 </style>
 </head>
 <body>
 
-<!-- Loading -->
 <div id="loading">
   <div id="loading-logo">GTA TUNISIE</div>
-  <div id="loading-sub">WEB EDITION</div>
   <div id="loading-bar-wrap"><div id="loading-bar"></div></div>
-  <div id="loading-tip">Chargement du monde...</div>
+  <div id="loading-tip" style="color:#888; margin-top:10px; font-size:12px;">Chargement...</div>
 </div>
 
 <canvas id="c"></canvas>
 
-<!-- HUD -->
 <div id="hud">
-  <canvas id="radarCanvas" width="110" height="110" style="position:absolute;bottom:160px;left:20px;border:2px solid rgba(255,200,0,0.8);border-radius:6px;background:rgba(0,0,0,0.7);"></canvas>
+  <canvas id="radarCanvas" width="110" height="110"></canvas>
   <div id="health-wrap">
     <div id="health-label">❤ VIE</div>
     <div id="health-bar"><div id="health-fill"></div></div>
@@ -182,1007 +77,95 @@
     <div id="speed-val">0</div>
     <div id="speed-unit">KM/H</div>
   </div>
-  <div id="wanted">
-    <span class="star" id="s1">★</span>
-    <span class="star" id="s2">★</span>
-    <span class="star" id="s3">★</span>
-    <span class="star" id="s4">★</span>
-    <span class="star" id="s5">★</span>
-  </div>
   <div id="notif"></div>
 </div>
 
-<!-- Phone -->
 <div id="phone-wrap">
   <div id="phone">
-    <div id="phone-status">
-      <span>📶 4G</span>
-      <span>🔋 87%</span>
-    </div>
-    <div id="phone-time">--:--</div>
+    <div id="phone-time">12:00</div>
     <div id="phone-apps">
-      <div class="app-btn" id="app-mechano">
-        <span class="app-icon">🔧</span>
-        <span class="app-name">Mécano</span>
-      </div>
-      <div class="app-btn" id="app-radio">
-        <span class="app-icon">🎵</span>
-        <span class="app-name">Radio</span>
-      </div>
+      <div class="app-btn" id="app-mechano">🔧 Mécano</div>
+      <div class="app-btn" id="app-radio">🎵 Radio</div>
     </div>
   </div>
 </div>
 
-<!-- Touch controls -->
-<div id="touch-controls">
-  <div id="joystick-zone">
-    <div id="joystick-base"></div>
-    <div id="joystick-knob"></div>
-  </div>
-  <div id="action-btns">
-    <div class="action-btn" id="btn-phone">📱<br>TEL</div>
-    <div style="display:flex;gap:10px;">
-      <div class="action-btn" id="btn-brake">🛑<br>FREIN</div>
-      <div class="action-btn" id="btn-action">⚡<br>ACTION</div>
-    </div>
-  </div>
+<div id="joystick-zone"><div id="joystick-base"></div><div id="joystick-knob"></div></div>
+<div id="action-btns">
+  <div class="action-btn" id="btn-phone">TEL</div>
+  <div class="action-btn" id="btn-action">ACTION</div>
 </div>
 
-<script>
-// ─── THREE.JS INLINE (r128 minimal needed via CDN) ─────────────────────────
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 'use strict';
 
-// ══════════════════════════════════════════════════════
-// AUDIO ENGINE
-// ══════════════════════════════════════════════════════
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
-let audioCtx = null;
-let engineOsc = null, engineGain = null;
-let radioLoop = null, radioGainNode = null;
-let radioTrack = 0;
-
-function initAudio() {
-  if (audioCtx) return;
-  audioCtx = new AudioCtx();
-  // Engine
-  engineGain = audioCtx.createGain();
-  engineGain.gain.value = 0;
-  engineGain.connect(audioCtx.destination);
-  engineOsc = audioCtx.createOscillator();
-  engineOsc.type = 'sawtooth';
-  engineOsc.frequency.value = 80;
-  const dist = audioCtx.createWaveShaper();
-  const curve = new Float32Array(256);
-  for (let i=0;i<256;i++){const x=i*2/256-1;curve[i]=x<0?-Math.pow(-x,.5):Math.pow(x,.5);}
-  dist.curve = curve;
-  engineOsc.connect(dist);
-  dist.connect(engineGain);
-  engineOsc.start();
-}
-
-function setEngineRPM(speed, inCar) {
-  if (!audioCtx) return;
-  const rpm = inCar ? Math.max(80, 80 + speed * 4) : 0;
-  engineOsc.frequency.setTargetAtTime(rpm, audioCtx.currentTime, 0.1);
-  engineGain.gain.setTargetAtTime(inCar ? Math.min(0.15, 0.04 + speed * 0.001) : 0, audioCtx.currentTime, 0.1);
-}
-
-function playRadio() {
-  if (!audioCtx) return;
-  if (radioLoop) { radioLoop.stop(); radioLoop = null; }
-  if (radioGainNode) { radioGainNode.disconnect(); radioGainNode = null; }
-  const tracks = [
-    () => makeBeat([0,4,6,10],[2,6,8,12], 140),
-    () => makeBeat([0,3,7,9],[1,5,9,13], 120),
-    () => makeBeat([0,2,4,8],[3,5,7,11], 160),
-  ];
-  radioTrack = (radioTrack + 1) % tracks.length;
-  tracks[radioTrack]();
-}
-
-function makeBeat(kickBeats, snareBeats, bpm) {
-  const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
-  const data = buf.getChannelData(0);
-  const beatLen = (audioCtx.sampleRate * 60 / bpm) | 0;
-  const numBeats = (buf.length / beatLen) | 0;
-  for (let b = 0; b < numBeats; b++) {
-    const start = b * beatLen;
-    if (kickBeats.includes(b % 16)) {
-      for (let i = 0; i < Math.min(beatLen, 4000); i++)
-        data[start + i] += Math.sin(2 * Math.PI * 60 * i / audioCtx.sampleRate) * Math.exp(-i / 800);
-    }
-    if (snareBeats.includes(b % 16)) {
-      for (let i = 0; i < Math.min(beatLen, 3000); i++)
-        data[start + i] += (Math.random() * 2 - 1) * Math.exp(-i / 500) * 0.5;
-    }
-  }
-  radioGainNode = audioCtx.createGain();
-  radioGainNode.gain.value = 0.2;
-  radioGainNode.connect(audioCtx.destination);
-  radioLoop = audioCtx.createBufferSource();
-  radioLoop.buffer = buf;
-  radioLoop.loop = true;
-  radioLoop.connect(radioGainNode);
-  radioLoop.start();
-}
-
-// ══════════════════════════════════════════════════════
-// THREE.JS SCENE SETUP
-// ══════════════════════════════════════════════════════
-const canvas = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({canvas, antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1); // Optimisation iPhone 8
 renderer.setClearColor(0x87CEEB);
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0x87CEEB, 80, 300);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.set(0, 10, 20);
 
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 500);
-camera.position.set(0, 8, 16);
-
-// Lights
-const sun = new THREE.DirectionalLight(0xffffff, 1.2);
-sun.position.set(50, 100, 50);
-sun.castShadow = true;
-sun.shadow.mapSize.set(2048, 2048);
-sun.shadow.camera.near = 1;
-sun.shadow.camera.far = 400;
-sun.shadow.camera.left = -150;
-sun.shadow.camera.right = 150;
-sun.shadow.camera.top = 150;
-sun.shadow.camera.bottom = -150;
+const sun = new THREE.DirectionalLight(0xffffff, 1.0);
+sun.position.set(10, 20, 10);
 scene.add(sun);
-scene.add(new THREE.AmbientLight(0x6688aa, 0.6));
-const hemi = new THREE.HemisphereLight(0x87CEEB, 0x4a7a4a, 0.4);
-scene.add(hemi);
+scene.add(new THREE.AmbientLight(0x404040, 0.6));
 
-// ══════════════════════════════════════════════════════
-// WORLD BUILDING
-// ══════════════════════════════════════════════════════
-function mat(color, rough=0.8, metal=0) {
-  return new THREE.MeshLambertMaterial({ color });
-}
-function matStd(color, rough=0.7, metal=0) {
-  return new THREE.MeshStandardMaterial({ color, roughness: rough, metalness: metal });
-}
-
-// Ground
-const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(600, 600),
-  matStd(0x3a7a2a, 0.9)
-);
-ground.rotation.x = -Math.PI / 2;
-ground.receiveShadow = true;
+// Sol
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(1000, 1000), new THREE.MeshLambertMaterial({color: 0x3a7a2a}));
+ground.rotation.x = -Math.PI/2;
 scene.add(ground);
 
-// Road network
-function makeRoad(x, z, w, h, rot=0) {
-  const g = new THREE.Mesh(new THREE.BoxGeometry(w, 0.05, h), matStd(0x222222, 0.95));
-  g.position.set(x, 0.03, z);
-  g.rotation.y = rot;
-  g.receiveShadow = true;
-  scene.add(g);
-  // Lane markings
-  for (let i = -h/2+5; i < h/2; i += 8) {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.06, 3), matStd(0xffff00));
-    m.position.set(x, 0.06, z + i);
-    m.rotation.y = rot;
-    scene.add(m);
-  }
-}
-// Main roads
-makeRoad(0, 0, 16, 300);      // N-S
-makeRoad(0, 0, 300, 16, Math.PI/2); // E-W
-makeRoad(80, 0, 16, 200);
-makeRoad(-80, 0, 16, 200);
-makeRoad(0, 80, 200, 16, Math.PI/2);
-makeRoad(0, -80, 200, 16, Math.PI/2);
-// Circular road around stadium
-const circR = 55, circSegs = 32;
-for (let i = 0; i < circSegs; i++) {
-  const a1 = (i / circSegs) * Math.PI * 2;
-  const a2 = ((i+1) / circSegs) * Math.PI * 2;
-  const mx = Math.cos((a1+a2)/2) * circR;
-  const mz = Math.sin((a1+a2)/2) * circR;
-  const seg = new THREE.Mesh(
-    new THREE.BoxGeometry(12, 0.05, (Math.PI*2*circR/circSegs)+1),
-    matStd(0x252525, 0.95)
-  );
-  seg.position.set(mx, 0.03, mz);
-  seg.rotation.y = -(a1+a2)/2;
-  seg.receiveShadow = true;
-  scene.add(seg);
-}
-
-// ── STADE ORANGE VÉLODROME ──
+// STADE CORRIGÉ (EllipseGeometry remplacée par CircleGeometry scalée)
 function buildStadium() {
   const g = new THREE.Group();
-
-  // Main oval bowl
-  const ovalShape = new THREE.Shape();
-  const rX = 36, rZ = 26;
-  for (let i = 0; i <= 64; i++) {
-    const a = (i/64)*Math.PI*2;
-    const x = Math.cos(a)*rX, z = Math.sin(a)*rZ;
-    i===0 ? ovalShape.moveTo(x,z) : ovalShape.lineTo(x,z);
-  }
-  const baseExt = { depth: 0.5, bevelEnabled: false };
-  const base = new THREE.Mesh(
-    new THREE.ExtrudeGeometry(ovalShape, baseExt),
-    matStd(0xcccccc, 0.6)
-  );
-  base.rotation.x = -Math.PI/2;
-  base.position.y = 0;
-  g.add(base);
-
-  // Stands (tiered rings)
-  const tierColors = [0xeeeeee, 0xdd6622, 0xeeeeee];
-  for (let t = 0; t < 3; t++) {
-    const ir = 20 + t*4, or = 24 + t*4, h = 3+t*1.5;
-    for (let i = 0; i < 48; i++) {
-      const a = (i/48)*Math.PI*2;
-      const x = Math.cos(a)*(ir+or)/2*1.1, z = Math.sin(a)*(ir+or)/2*0.8;
-      const sec = new THREE.Mesh(
-        new THREE.BoxGeometry((or-ir)*0.9, h, 2.2),
-        matStd(tierColors[t], 0.8)
-      );
-      sec.position.set(x, h/2, z);
-      sec.rotation.y = -a;
-      sec.castShadow = true;
-      g.add(sec);
-    }
-  }
-
-  // Iconic white wavy roof
-  for (let i = 0; i < 48; i++) {
-    const a = (i/48)*Math.PI*2;
-    const rr = 42;
-    const x = Math.cos(a)*rr*1.0, z = Math.sin(a)*rr*0.72;
-    const wave = Math.sin(a*6)*0.8;
-    const panel = new THREE.Mesh(
-      new THREE.BoxGeometry(6, 0.25, 7),
-      matStd(0xfafafa, 0.3, 0.1)
-    );
-    panel.position.set(x, 14+wave, z);
-    panel.rotation.y = -a;
-    panel.rotation.z = Math.sin(a*6)*0.05;
-    panel.castShadow = true;
-    g.add(panel);
-  }
-
-  // Roof supports
-  for (let i = 0; i < 16; i++) {
-    const a = (i/16)*Math.PI*2;
-    const x = Math.cos(a)*40, z = Math.sin(a)*28;
-    const col = new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.4,14,6), matStd(0xaaaaaa,0.5,0.4));
-    col.position.set(x, 7, z);
-    g.add(col);
-  }
-
-  // Pitch (green)
   const pitch = new THREE.Mesh(
-    new THREE.EllipseGeometry(18, 13, 32),
-    matStd(0x2d8a2d, 0.9)
+    new THREE.CircleGeometry(1, 32), 
+    new THREE.MeshLambertMaterial({color: 0x2d8a2d})
   );
   pitch.rotation.x = -Math.PI/2;
-  pitch.position.y = 0.55;
+  pitch.scale.set(18, 13, 1); // Voici l'ellipse
+  pitch.position.y = 0.1;
   g.add(pitch);
-
-  // Pitch lines
-  const lineMat = matStd(0xffffff, 0.7);
-  // Center circle
-  const cc = new THREE.Mesh(new THREE.RingGeometry(4, 4.15, 32), lineMat);
-  cc.rotation.x = -Math.PI/2; cc.position.y = 0.56;
-  g.add(cc);
-
-  // Orange signage
-  for (let i = 0; i < 4; i++) {
-    const a = (i/4)*Math.PI*2;
-    const sign = new THREE.Mesh(new THREE.BoxGeometry(8,2,0.2), matStd(0xff6600,0.5));
-    sign.position.set(Math.cos(a)*34, 4, Math.sin(a)*24);
-    sign.rotation.y = a+Math.PI/2;
-    g.add(sign);
-  }
-
-  g.position.set(0, 0, 0);
   scene.add(g);
 }
 buildStadium();
 
-// Trees
-function makeTree(x, z) {
-  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.3,2,5), mat(0x5a3a1a));
-  trunk.position.set(x, 1, z);
-  scene.add(trunk);
-  const foliage = new THREE.Mesh(new THREE.ConeGeometry(1.5,3,6), mat(0x2d7a2d));
-  foliage.position.set(x, 4, z);
-  scene.add(foliage);
-}
-const treePositions = [
-  [-12,20],[-12,-20],[12,20],[12,-20],[25,40],[25,-40],[-25,40],[-25,-40],
-  [60,30],[60,-30],[-60,30],[-60,-30],[40,90],[40,-90],[-40,90],[-40,-90],
-  [100,20],[100,-20],[-100,20],[-100,-20],[70,60],[70,-60],[-70,60],[-70,-60],
-];
-treePositions.forEach(([x,z]) => makeTree(x,z));
+// Voiture simple pour le test
+const car = new THREE.Mesh(new THREE.BoxGeometry(2, 1, 4), new THREE.MeshStandardMaterial({color: 0x1a1a1a}));
+car.position.set(5, 0.5, 5);
+scene.add(car);
 
-// Buildings
-function makeBuilding(x, z, w, d, h, color) {
-  const b = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), matStd(color,0.8));
-  b.position.set(x, h/2, z);
-  b.castShadow = true;
-  b.receiveShadow = true;
-  scene.add(b);
-  // Windows
-  const wMat = matStd(0x88ccff, 0.2, 0.3);
-  for (let fy = 1; fy < h-1; fy += 2.5) {
-    for (let fx = -w/2+1; fx < w/2; fx += 2) {
-      const win = new THREE.Mesh(new THREE.BoxGeometry(0.8,1,0.05), wMat);
-      win.position.set(x+fx, h/2-h/2+fy+0.5, z+d/2+0.06);
-      scene.add(win);
-    }
+// Logic de chargement
+let loadPct = 0;
+const loadBar = document.getElementById('loading-bar');
+const interval = setInterval(() => {
+  loadPct += 5;
+  loadBar.style.width = loadPct + '%';
+  if(loadPct >= 100) {
+    clearInterval(interval);
+    document.getElementById('loading').style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+      animate();
+    }, 800);
   }
-}
-makeBuilding(100, -100, 14, 12, 20, 0xd4a56a);
-makeBuilding(-100, -100, 10, 10, 16, 0xa87a5a);
-makeBuilding(100, 100, 18, 14, 28, 0xc8b890);
-makeBuilding(-100, 100, 12, 10, 22, 0xb8a880);
-makeBuilding(120, 0, 8, 8, 12, 0xe8d0a8);
-makeBuilding(-120, 0, 10, 12, 18, 0xd8c090);
+}, 100);
 
-// Streetlights
-function makeLamp(x, z) {
-  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08,0.1,6,5), matStd(0x888888,0.4,0.5));
-  pole.position.set(x, 3, z);
-  scene.add(pole);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.3,6,4), matStd(0xffffcc,0.1,0.1));
-  head.position.set(x, 6.2, z);
-  scene.add(head);
-  const light = new THREE.PointLight(0xffffcc, 0.8, 20);
-  light.position.set(x, 6, z);
-  scene.add(light);
-}
-for (let i = -120; i < 120; i += 20) {
-  makeLamp(9, i); makeLamp(-9, i); makeLamp(i, 9); makeLamp(i, -9);
-}
-
-// ══════════════════════════════════════════════════════
-// PORSCHE 911 MODEL
-// ══════════════════════════════════════════════════════
-const carGroup = new THREE.Group();
-scene.add(carGroup);
-
-function buildCar() {
-  const bodyMat = matStd(0x1a1a1a, 0.2, 0.5);
-  const glassMat = new THREE.MeshStandardMaterial({ color:0x88aacc, roughness:0.1, metalness:0.1, transparent:true, opacity:0.6 });
-  const chromeMat = matStd(0xcccccc, 0.1, 0.9);
-  const tyreMat = matStd(0x111111, 0.9);
-  const rimMat = matStd(0xaaaaaa, 0.2, 0.8);
-  const lightMat = new THREE.MeshStandardMaterial({ color:0xffffee, emissive:0xffff88, emissiveIntensity:0.5 });
-  const redLightMat = new THREE.MeshStandardMaterial({ color:0xff2200, emissive:0xff2200, emissiveIntensity:0.5 });
-
-  // Main body
-  const body = new THREE.Mesh(new THREE.BoxGeometry(4, 1.1, 8.5), bodyMat);
-  body.position.y = 0.65;
-  carGroup.add(body);
-
-  // Roof (rounded)
-  const roof = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.8, 4.2), bodyMat);
-  roof.position.set(0, 1.6, 0.2);
-  carGroup.add(roof);
-
-  // Hood slope front
-  const hood = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.5, 2), bodyMat);
-  hood.position.set(0, 0.8, -3.8);
-  hood.rotation.x = 0.18;
-  carGroup.add(hood);
-
-  // Rear engine bump (911 style)
-  const rear = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.7, 2), bodyMat);
-  rear.position.set(0, 0.9, 3.5);
-  carGroup.add(rear);
-
-  // Windshield
-  const windshield = new THREE.Mesh(new THREE.BoxGeometry(3.0, 1, 0.1), glassMat);
-  windshield.position.set(0, 1.3, -1.9);
-  windshield.rotation.x = -0.4;
-  carGroup.add(windshield);
-
-  // Rear glass
-  const rearGlass = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.8, 0.1), glassMat);
-  rearGlass.position.set(0, 1.4, 2.4);
-  rearGlass.rotation.x = 0.4;
-  carGroup.add(rearGlass);
-
-  // Side windows
-  [-1.62, 1.62].forEach(sx => {
-    const sw = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.7, 2.5), glassMat);
-    sw.position.set(sx, 1.55, 0.2);
-    carGroup.add(sw);
-  });
-
-  // Headlights (round, 911 iconic)
-  [[-1.2, 0.75, -4.3],[1.2, 0.75, -4.3]].forEach(([x,y,z]) => {
-    const hl = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.15,12), lightMat);
-    hl.rotation.x = Math.PI/2;
-    hl.position.set(x,y,z);
-    carGroup.add(hl);
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.35,0.06,6,12), chromeMat);
-    ring.rotation.x = Math.PI/2;
-    ring.position.set(x,y,z-0.05);
-    carGroup.add(ring);
-  });
-
-  // Taillights
-  [[-1.5, 0.75, 4.26],[1.5, 0.75, 4.26]].forEach(([x,y,z]) => {
-    const tl = new THREE.Mesh(new THREE.BoxGeometry(0.8,0.2,0.1), redLightMat);
-    tl.position.set(x,y,z);
-    carGroup.add(tl);
-  });
-
-  // Tail light bar (connecting strip - 911 style)
-  const tlBar = new THREE.Mesh(new THREE.BoxGeometry(3.5,0.12,0.08), redLightMat);
-  tlBar.position.set(0, 0.75, 4.26);
-  carGroup.add(tlBar);
-
-  // Spoiler
-  const spoilerL = new THREE.Mesh(new THREE.BoxGeometry(0.1,0.4,0.3), bodyMat);
-  spoilerL.position.set(-1.4, 1.1, 4.0); carGroup.add(spoilerL);
-  const spoilerR = new THREE.Mesh(new THREE.BoxGeometry(0.1,0.4,0.3), bodyMat);
-  spoilerR.position.set(1.4, 1.1, 4.0); carGroup.add(spoilerR);
-  const spoilerTop = new THREE.Mesh(new THREE.BoxGeometry(3, 0.1, 0.7), bodyMat);
-  spoilerTop.position.set(0, 1.3, 4.0); carGroup.add(spoilerTop);
-
-  // Wheels
-  const wheelPositions = [[-1.85,0,-2.8],[1.85,0,-2.8],[-1.85,0,2.8],[1.85,0,2.8]];
-  wheelPositions.forEach(([x,y,z]) => {
-    const tyre = new THREE.Mesh(new THREE.TorusGeometry(0.55,0.22,8,16), tyreMat);
-    tyre.rotation.y = Math.PI/2;
-    tyre.position.set(x,y+0.55,z);
-    carGroup.add(tyre);
-    const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,0.18,10), rimMat);
-    rim.rotation.z = Math.PI/2;
-    rim.position.set(x,y+0.55,z);
-    carGroup.add(rim);
-    // Spokes
-    for (let s=0;s<5;s++){
-      const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.7,0.06,0.04),rimMat);
-      spoke.rotation.z = (s/5)*Math.PI*2;
-      spoke.position.set(x,y+0.55,z);
-      carGroup.add(spoke);
-    }
-  });
-
-  // Exhaust
-  [[-0.5, 0.3, 4.35],[0.5, 0.3, 4.35]].forEach(([x,y,z]) => {
-    const ex = new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.12,0.2,8), chromeMat);
-    ex.position.set(x,y,z); carGroup.add(ex);
-  });
-
-  // Number plate (Tunisian style)
-  const plateMat = new THREE.MeshStandardMaterial({ color:0xffffff, roughness:0.5 });
-  const plate = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.35, 0.05), plateMat);
-  plate.position.set(0, 0.45, 4.3);
-  carGroup.add(plate);
-
-  // Plate text via canvas texture
-  const ptc = document.createElement('canvas');
-  ptc.width = 256; ptc.height = 64;
-  const ptx = ptc.getContext('2d');
-  ptx.fillStyle = '#ffffff'; ptx.fillRect(0,0,256,64);
-  ptx.fillStyle = '#cc0000'; ptx.fillRect(0,0,40,64);
-  ptx.fillStyle = '#ffffff'; ptx.font = 'bold 18px Arial'; ptx.textAlign='center';
-  ptx.fillText('تونس',20,40);
-  ptx.fillStyle = '#000'; ptx.font = 'bold 26px Arial';
-  ptx.fillText('216 ★ 911', 155, 42);
-  plate.material = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(ptc) });
-}
-buildCar();
-carGroup.position.set(8, 0, 15);
-
-// ══════════════════════════════════════════════════════
-// PLAYER (Tunisian footballer)
-// ══════════════════════════════════════════════════════
-const playerGroup = new THREE.Group();
-scene.add(playerGroup);
-
-function buildPlayer() {
-  const skinMat = matStd(0xc8956c, 0.8);
-  const shirtMat = matStd(0xffffff, 0.8); // white shirt
-  const shortsMat = matStd(0xcc0000, 0.8); // red shorts
-  const shoeMat = matStd(0x111111, 0.9);
-  const hairMat = matStd(0x1a1a00, 0.9);
-
-  // Torso - white shirt with red accents
-  const torso = new THREE.Mesh(new THREE.BoxGeometry(0.6,0.75,0.32), shirtMat);
-  torso.position.y = 1.4;
-  playerGroup.add(torso);
-
-  // Red stripes on shirt
-  const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.15,0.75,0.33), matStd(0xcc0000,0.8));
-  stripe.position.set(0, 1.4, 0);
-  playerGroup.add(stripe);
-
-  // Head
-  const head = new THREE.Mesh(new THREE.BoxGeometry(0.38,0.38,0.38), skinMat);
-  head.position.y = 2.05;
-  playerGroup.add(head);
-
-  // Hair
-  const hair = new THREE.Mesh(new THREE.BoxGeometry(0.4,0.14,0.4), hairMat);
-  hair.position.y = 2.28;
-  playerGroup.add(hair);
-
-  // Legs (red shorts + skin lower)
-  [[-0.16,0],[0.16,0]].forEach(([x,_]) => {
-    const thigh = new THREE.Mesh(new THREE.BoxGeometry(0.22,0.38,0.22), shortsMat);
-    thigh.position.set(x, 0.9, 0);
-    playerGroup.add(thigh);
-    const shin = new THREE.Mesh(new THREE.BoxGeometry(0.18,0.38,0.18), skinMat);
-    shin.position.set(x, 0.52, 0);
-    playerGroup.add(shin);
-    const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.2,0.12,0.32), shoeMat);
-    shoe.position.set(x, 0.27, 0.06);
-    playerGroup.add(shoe);
-  });
-
-  // Arms
-  [[-0.42, 0],[0.42, 0]].forEach(([x,_]) => {
-    const arm = new THREE.Mesh(new THREE.BoxGeometry(0.18,0.5,0.18), shirtMat);
-    arm.position.set(x, 1.35, 0);
-    playerGroup.add(arm);
-    const hand = new THREE.Mesh(new THREE.BoxGeometry(0.16,0.2,0.16), skinMat);
-    hand.position.set(x, 1.1, 0);
-    playerGroup.add(hand);
-  });
-}
-buildPlayer();
-playerGroup.position.set(0, 0, 20);
-
-// ══════════════════════════════════════════════════════
-// GAME STATE
-// ══════════════════════════════════════════════════════
-const state = {
-  inCar: false,
-  playerPos: new THREE.Vector3(0, 0, 20),
-  playerRot: 0,
-  carPos: new THREE.Vector3(8, 0, 15),
-  carRot: 0,
-  carSpeed: 0,
-  carTurnRate: 0,
-  health: 100,
-  phoneOpen: false,
-  carWheelRot: 0,
-};
-
-const keys = {};
-document.addEventListener('keydown', e => {
-  keys[e.code] = true;
-  initAudio();
-  if (e.code === 'KeyP') togglePhone();
-  if (e.code === 'KeyF') tryEnterExit();
-  if (e.code === 'KeyR') spawnCarNearPlayer();
-});
-document.addEventListener('keyup', e => { keys[e.code] = false; });
-
-// Joystick
-const joystickZone = document.getElementById('joystick-zone');
-const joystickKnob = document.getElementById('joystick-knob');
-const js = { active: false, id: null, cx: 55, cy: 55, dx: 0, dy: 0, nx: 0, ny: 0 };
-const JR = 35; // max radius
-
-joystickZone.addEventListener('touchstart', e => {
-  e.preventDefault(); initAudio();
-  const t = e.changedTouches[0];
-  const rect = joystickZone.getBoundingClientRect();
-  js.active = true; js.id = t.identifier;
-  js.cx = rect.left + rect.width/2; js.cy = rect.top + rect.height/2;
-}, { passive:false });
-
-document.addEventListener('touchmove', e => {
-  e.preventDefault();
-  for (let i=0;i<e.changedTouches.length;i++){
-    const t = e.changedTouches[i];
-    if (t.identifier === js.id) {
-      js.dx = t.clientX - js.cx;
-      js.dy = t.clientY - js.cy;
-      const dist = Math.sqrt(js.dx*js.dx+js.dy*js.dy);
-      if (dist > JR) { js.dx = js.dx/dist*JR; js.dy = js.dy/dist*JR; }
-      js.nx = js.dx/JR; js.ny = js.dy/JR;
-      joystickKnob.style.transform = `translate(calc(-50% + ${js.dx}px), calc(-50% + ${js.dy}px))`;
-    }
-  }
-}, { passive:false });
-
-function resetJoystick() {
-  js.active = false; js.id = null;
-  js.dx = js.dy = js.nx = js.ny = 0;
-  joystickKnob.style.transform = 'translate(-50%, -50%)';
-}
-
-document.addEventListener('touchend', e => {
-  for (let i=0;i<e.changedTouches.length;i++){
-    if (e.changedTouches[i].identifier === js.id) resetJoystick();
-  }
-}, { passive:false });
-
-// Touch buttons
-const touchBtns = { action:false, brake:false, phone:false };
-function setupTouchBtn(id, key) {
-  const el = document.getElementById(id);
-  el.addEventListener('touchstart', e => { e.preventDefault(); initAudio(); touchBtns[key] = true;
-    if (key==='phone') togglePhone();
-    if (key==='action') tryEnterExit();
-  }, { passive:false });
-  el.addEventListener('touchend', e => { e.preventDefault(); touchBtns[key] = false; }, { passive:false });
-}
-setupTouchBtn('btn-action','action');
-setupTouchBtn('btn-brake','brake');
-setupTouchBtn('btn-phone','phone');
-
-// Phone apps
-document.getElementById('app-mechano').addEventListener('click', () => {
-  spawnCarNearPlayer(); togglePhone();
-});
-document.getElementById('app-radio').addEventListener('click', () => {
-  playRadio(); showNotif('📻 Radio - Piste suivante!');
-});
-
-// ══════════════════════════════════════════════════════
-// GAMEPLAY FUNCTIONS
-// ══════════════════════════════════════════════════════
-function showNotif(msg) {
-  const el = document.getElementById('notif');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(showNotif._t);
-  showNotif._t = setTimeout(() => el.classList.remove('show'), 2500);
-}
-
-function togglePhone() {
-  state.phoneOpen = !state.phoneOpen;
-  document.getElementById('phone-wrap').classList.toggle('open', state.phoneOpen);
-  updatePhoneTime();
-}
-
-function updatePhoneTime() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('phone-time').textContent = h+':'+m;
-}
-
-function tryEnterExit() {
-  if (state.inCar) {
-    // Exit car
-    state.inCar = false;
-    const offset = new THREE.Vector3(3, 0, 0);
-    offset.applyEuler(new THREE.Euler(0, state.carRot, 0));
-    state.playerPos.copy(state.carPos).add(offset);
-    state.playerRot = state.carRot;
-    playerGroup.visible = true;
-    showNotif('Sortie du véhicule');
-  } else {
-    // Check distance to car
-    const dist = state.playerPos.distanceTo(state.carPos);
-    if (dist < 5) {
-      state.inCar = true;
-      playerGroup.visible = false;
-      showNotif('Au volant de la Porsche 911!');
-      initAudio();
-    } else {
-      showNotif('Approchez-vous de la voiture (Touche F)');
-    }
-  }
-}
-
-function spawnCarNearPlayer() {
-  state.carPos.copy(state.playerPos);
-  state.carPos.z -= 5;
-  state.carRot = state.playerRot;
-  state.carSpeed = 0;
-  carGroup.position.copy(state.carPos);
-  carGroup.position.y = 0;
-  carGroup.rotation.y = state.carRot;
-  showNotif('🔧 Porsche livrée!');
-}
-
-// Collision with static objects (simple AABB)
-const collidables = [];
-// Stadium outer wall
-collidables.push({ x:0, z:0, r:20 }); // circular exclusion
-
-function checkCarCollision(newPos) {
-  for (const c of collidables) {
-    const dx = newPos.x - c.x, dz = newPos.z - c.z;
-    if (Math.sqrt(dx*dx+dz*dz) < c.r + 3) return true;
-  }
-  return false;
-}
-
-// ══════════════════════════════════════════════════════
-// RADAR
-// ══════════════════════════════════════════════════════
-const radarCanvas = document.getElementById('radarCanvas');
-const rctx = radarCanvas.getContext('2d');
-function drawRadar() {
-  rctx.clearRect(0,0,110,110);
-  rctx.fillStyle = 'rgba(0,20,0,0.85)'; rctx.fillRect(0,0,110,110);
-  const scale = 0.55;
-  const cx = 55, cy = 55;
-  const camPos = state.inCar ? state.carPos : state.playerPos;
-
-  // Grid
-  rctx.strokeStyle = 'rgba(0,255,0,0.1)';
-  rctx.lineWidth = 0.5;
-  for (let i=0;i<110;i+=20) {
-    rctx.beginPath(); rctx.moveTo(i,0); rctx.lineTo(i,110); rctx.stroke();
-    rctx.beginPath(); rctx.moveTo(0,i); rctx.lineTo(110,i); rctx.stroke();
-  }
-
-  // Roads (simplified dot representation)
-  rctx.strokeStyle = 'rgba(100,100,100,0.6)'; rctx.lineWidth = 3;
-  const drawRoadLine = (wx1,wz1,wx2,wz2) => {
-    const sx1 = cx + (wx1-camPos.x)*scale, sy1 = cy + (wz1-camPos.z)*scale;
-    const sx2 = cx + (wx2-camPos.x)*scale, sy2 = cy + (wz2-camPos.z)*scale;
-    rctx.beginPath(); rctx.moveTo(sx1,sy1); rctx.lineTo(sx2,sy2); rctx.stroke();
-  };
-  drawRoadLine(-150, 0, 150, 0);
-  drawRoadLine(0, -150, 0, 150);
-
-  // Stadium
-  rctx.strokeStyle = 'rgba(255,160,0,0.8)'; rctx.lineWidth = 1.5;
-  rctx.beginPath();
-  rctx.ellipse(cx + (0-camPos.x)*scale, cy + (0-camPos.z)*scale, 36*scale, 26*scale, 0, 0, Math.PI*2);
-  rctx.stroke();
-
-  // Car dot
-  const carSx = cx + (state.carPos.x-camPos.x)*scale;
-  const carSy = cy + (state.carPos.z-camPos.z)*scale;
-  rctx.fillStyle = '#ff4400';
-  rctx.beginPath(); rctx.arc(carSx, carSy, 4, 0, Math.PI*2); rctx.fill();
-
-  // Player dot
-  if (!state.inCar) {
-    const pSx = cx + (state.playerPos.x-camPos.x)*scale;
-    const pSy = cy + (state.playerPos.z-camPos.z)*scale;
-    rctx.fillStyle = '#00ff88';
-    rctx.beginPath(); rctx.arc(pSx, pSy, 3, 0, Math.PI*2); rctx.fill();
-  }
-
-  // North indicator
-  rctx.fillStyle = 'rgba(0,255,0,0.6)'; rctx.font = 'bold 9px monospace';
-  rctx.fillText('N', 53, 9);
-  // Frame
-  rctx.strokeStyle = 'rgba(255,200,0,0.4)'; rctx.lineWidth = 1;
-  rctx.strokeRect(1,1,108,108);
-}
-
-// ══════════════════════════════════════════════════════
-// MAIN UPDATE LOOP
-// ══════════════════════════════════════════════════════
-const PLAYER_SPEED = 0.08;
-const CAR_ACCEL = 0.012, CAR_DECEL = 0.018, CAR_BRAKE = 0.06;
-const CAR_MAX_SPEED = 1.6, CAR_TURN = 0.035;
-
-let prevTime = performance.now();
-
-function update() {
-  const now = performance.now();
-  const dt = Math.min((now - prevTime)/16.67, 3);
-  prevTime = now;
-
-  const fwd = keys['ArrowUp']    || keys['KeyW'] || keys['KeyZ'];
-  const bck = keys['ArrowDown']  || keys['KeyS'];
-  const lft = keys['ArrowLeft']  || keys['KeyA'] || keys['KeyQ'];
-  const rgt = keys['ArrowRight'] || keys['KeyD'];
-  const brk = keys['Space'] || touchBtns.brake;
-
-  // Joystick inputs
-  const jsFwd = -js.ny > 0.15 ? -js.ny : 0;
-  const jsBck = js.ny > 0.15 ? js.ny : 0;
-  const jsLft = -js.nx > 0.15 ? -js.nx : 0;
-  const jsRgt = js.nx > 0.15 ? js.nx : 0;
-
-  const goFwd = fwd || jsFwd > 0;
-  const goBck = bck || jsBck > 0;
-  const goLft = lft || jsLft > 0;
-  const goRgt = rgt || jsRgt > 0;
-  const jsForce = Math.max(jsFwd, jsBck);
-
-  if (state.inCar) {
-    // ── Car physics ──
-    if (goFwd) {
-      state.carSpeed += CAR_ACCEL * dt * (jsForce > 0 ? jsForce : 1);
-    } else if (goBck) {
-      state.carSpeed -= CAR_ACCEL * 0.6 * dt;
-    } else {
-      state.carSpeed *= Math.pow(1 - CAR_DECEL, dt);
-    }
-    if (brk) {
-      state.carSpeed *= Math.pow(1 - CAR_BRAKE, dt);
-    }
-    state.carSpeed = Math.max(-0.4, Math.min(CAR_MAX_SPEED, state.carSpeed));
-
-    const turnForce = jsLft > 0 ? jsLft : jsRgt > 0 ? jsRgt : 1;
-    if (goLft && Math.abs(state.carSpeed) > 0.01) {
-      state.carRot += CAR_TURN * dt * Math.sign(state.carSpeed) * (jsLft || 1) * Math.min(Math.abs(state.carSpeed)/0.3, 1);
-    }
-    if (goRgt && Math.abs(state.carSpeed) > 0.01) {
-      state.carRot -= CAR_TURN * dt * Math.sign(state.carSpeed) * (jsRgt || 1) * Math.min(Math.abs(state.carSpeed)/0.3, 1);
-    }
-
-    // Move car
-    const newCarPos = state.carPos.clone();
-    newCarPos.x += Math.sin(state.carRot) * state.carSpeed * dt;
-    newCarPos.z += Math.cos(state.carRot) * state.carSpeed * dt;
-    // Boundary check
-    if (Math.abs(newCarPos.x) < 250 && Math.abs(newCarPos.z) < 250) {
-      state.carPos.copy(newCarPos);
-    } else {
-      state.carSpeed *= -0.3;
-    }
-
-    carGroup.position.set(state.carPos.x, 0, state.carPos.z);
-    carGroup.rotation.y = state.carRot;
-
-    // Wheel rotation animation
-    state.carWheelRot += state.carSpeed * dt * 0.5;
-
-    // Camera follows car
-    const camDist = 12 + Math.abs(state.carSpeed) * 3;
-    const camH = 5 + Math.abs(state.carSpeed) * 0.5;
-    const camTarget = new THREE.Vector3(
-      state.carPos.x - Math.sin(state.carRot) * camDist,
-      camH,
-      state.carPos.z - Math.cos(state.carRot) * camDist
-    );
-    camera.position.lerp(camTarget, 0.08 * dt);
-    camera.lookAt(state.carPos.x, 1.5, state.carPos.z);
-
-    // Audio
-    setEngineRPM(Math.abs(state.carSpeed) * 60, true);
-
-    // Speed HUD
-    document.getElementById('speed-val').textContent = Math.round(Math.abs(state.carSpeed) * 75);
-
-  } else {
-    // ── Player on foot ──
-    const dir = new THREE.Vector3(0,0,0);
-    const jsX = js.active ? js.nx : 0, jsY = js.active ? js.ny : 0;
-
-    if (goFwd || jsFwd > 0) dir.z -= 1;
-    if (goBck || jsBck > 0) dir.z += 1;
-    if (goLft || jsLft > 0) dir.x -= 1;
-    if (goRgt || jsRgt > 0) dir.x += 1;
-
-    if (dir.length() > 0) {
-      dir.normalize();
-      // Face movement direction
-      if (dir.x !== 0 || dir.z !== 0)
-        state.playerRot = Math.atan2(dir.x, dir.z) + Math.PI;
-
-      const speed = PLAYER_SPEED * dt * (jsForce > 0 ? 0.5+jsForce*0.5 : 1);
-      const camYaw = Math.atan2(
-        camera.position.x - state.playerPos.x,
-        camera.position.z - state.playerPos.z
-      );
-      // Move relative to camera
-      state.playerPos.x += (dir.x * Math.cos(camYaw) + dir.z * Math.sin(camYaw)) * (-speed);
-      state.playerPos.z += (-dir.x * Math.sin(camYaw) + dir.z * Math.cos(camYaw)) * (-speed);
-      // Bob
-      playerGroup.position.y = Math.sin(now * 0.01) * 0.04;
-    }
-
-    // Clamp to world
-    state.playerPos.x = Math.max(-240, Math.min(240, state.playerPos.x));
-    state.playerPos.z = Math.max(-240, Math.min(240, state.playerPos.z));
-
-    playerGroup.position.set(state.playerPos.x, 0, state.playerPos.z);
-    playerGroup.rotation.y = state.playerRot;
-
-    // Camera follows player
-    const camTarget = new THREE.Vector3(
-      state.playerPos.x - Math.sin(state.playerRot) * 8,
-      6,
-      state.playerPos.z - Math.cos(state.playerRot) * 8
-    );
-    camera.position.lerp(camTarget, 0.06 * dt);
-    camera.lookAt(state.playerPos.x, 1.5, state.playerPos.z);
-
-    document.getElementById('speed-val').textContent = dir.length() > 0 ? '12' : '0';
-    setEngineRPM(0, false);
-  }
-
-  // HUD updates
-  drawRadar();
-  document.getElementById('health-fill').style.width = state.health + '%';
-  // proximity hint
-  if (!state.inCar && state.playerPos.distanceTo(state.carPos) < 5) {
-    showNotif('Appuyez sur F / ACTION pour monter');
-  }
-}
-
-// ══════════════════════════════════════════════════════
-// SKY / ATMOSPHERE
-// ══════════════════════════════════════════════════════
-const skyGeo = new THREE.SphereGeometry(400, 16, 8);
-const skyMat = new THREE.MeshBasicMaterial({
-  color: 0x87CEEB, side: THREE.BackSide
-});
-scene.add(new THREE.Mesh(skyGeo, skyMat));
-
-// Clouds
-for (let i=0;i<12;i++) {
-  const cloud = new THREE.Group();
-  for (let j=0;j<4;j++){
-    const c = new THREE.Mesh(new THREE.SphereGeometry(3+Math.random()*3,7,5),
-      new THREE.MeshLambertMaterial({color:0xffffff,transparent:true,opacity:0.85}));
-    c.position.set(j*3+Math.random()*3, Math.random()*2, Math.random()*3);
-    cloud.add(c);
-  }
-  cloud.position.set(
-    (Math.random()-0.5)*300, 50+Math.random()*30, (Math.random()-0.5)*300
-  );
-  scene.add(cloud);
-}
-
-// ══════════════════════════════════════════════════════
-// RENDER LOOP
-// ══════════════════════════════════════════════════════
-function render() {
-  requestAnimationFrame(render);
-  update();
+function animate() {
+  requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
 
-// ══════════════════════════════════════════════════════
-// RESIZE
-// ══════════════════════════════════════════════════════
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
-
-// ══════════════════════════════════════════════════════
-// LOADING SCREEN
-// ══════════════════════════════════════════════════════
-const loadBar = document.getElementById('loading-bar');
-const loadTip = document.getElementById('loading-tip');
-const tips = [
-  'Construction du stade Orange Vélodrome...',
-  'Chargement de la Porsche 911...',
-  'Habillage du joueur tunisien...',
-  'Asphalte des routes...',
-  'Bientôt prêt!'
-];
-let loadPct = 0;
-const loadInterval = setInterval(() => {
-  loadPct += Math.random() * 22;
-  if (loadPct > 100) loadPct = 100;
-  loadBar.style.width = loadPct + '%';
-  loadTip.textContent = tips[Math.floor(loadPct/25)] || tips[4];
-  if (loadPct >= 100) {
-    clearInterval(loadInterval);
-    setTimeout(() => {
-      const loading = document.getElementById('loading');
-      loading.style.opacity = '0';
-      setTimeout(() => { loading.style.display = 'none'; render(); }, 800);
-      showNotif('🏟 Bienvenue — Stade Orange Vélodrome, Tunis');
-    }, 400);
-  }
-}, 120);
-
-// Phone clock updater
-setInterval(updatePhoneTime, 30000);
-updatePhoneTime();
-
 </script>
 </body>
 </html>
